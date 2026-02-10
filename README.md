@@ -1,23 +1,19 @@
 # 🌌 Midnight Neon Pine
 
-A high-visibility, "Super-Theme" configuration for Neovim. This is a bespoke hybrid that merges the legendary eye-comfort of **Night Owl**, the neon energy of **Tokyo Night**, and the dreamy sophistication of **Rosé Pine**.
+A bespoke "Super-Theme" configuration for Neovim. This is a high-performance hybrid that merges the deep-sea comfort of **Night Owl**, the neon energy of **Tokyo Night**, and the dreamy sophistication of **Rosé Pine**.
 
-Unlike standard themes, `Midnight Neon Pine` is semantically engineered to separate "Control" (Keywords) from "Data" (Variables/Types) using a tri-color palette logic.
+This isn't a new plugin to maintain—it's a **Configuration Recipe** that skins the `rose-pine` engine into a high-contrast masterpiece.
 
-## ✨ Philosophy
+## ✨ Why this hybrid?
 
-- **The Foundation:** Built on the authentic `#011627` background from **Night Owl**.
-- **The Glow:** Functions and constants use the iconic **Night Owl** Purples (`#c792ea`) and Seafoams (`#7fdbca`).
-- **The Logic:** Keywords use **Rosé Pine's** warm pinks (`#ff7eb6`) to distinguish control flow from data.
-- **The Punch:** Strings and properties use **Tokyo Night’s** high-luminance green and sky blue.
+- **The Foundation:** Locked to the authentic `#011627` background from **Night Owl**.
+- **The Glow:** Functions and methods use the iconic **Night Owl** Purple (`#c792ea`).
+- **The Logic:** Access modifiers (`public`, `private`) use **Rosé Pine's** pinks to separate "Control" from "Data."
+- **The Recess:** Comments use the specific **Night Owl** Slate-Teal (`#637777`) so they don't distract from your code.
 
-## 📸 Interface Preview
+## 🚀 Installation (LazyVim / lazy.nvim)
 
-
-
-## 📦 Installation (LazyVim / lazy.nvim)
-
-Simply create `lua/plugins/theme.lua` and paste the following. This configuration skins the `rose-pine` engine into the `Midnight Neon Pine` hybrid.
+Simply create or overwrite `~/.config/nvim/lua/plugins/theme.lua` with the following block:
 
 ```lua
 return {
@@ -31,28 +27,27 @@ return {
     styles = {
       bold = true,
       italic = true,
-      transparency = false,
+      transparency = false, -- Locked for Night Owl brand consistency
     },
 
     -- Full Palette Override for UI Consistency
     palette = {
       main = {
         base = "#011627",    -- Night Owl Background
-        surface = "#011f35", -- Night Owl Sidebar
-        overlay = "#0b2942", -- Floating Windows/Selection
-        muted = "#637777",   -- Night Owl Comments
+        surface = "#011f35", -- Sidebar/Panel Background
+        overlay = "#0b2942", -- Floating Windows
+        muted = "#637777",   -- Night Owl Slate Comments
         subtle = "#82aaff",  -- Night Owl Punctuation
-        rose = "#ff7eb6",    -- Rosé Pine Keywords
-        pine = "#7fdbca",    -- Night Owl Seafoam
-        foam = "#7dcfff",    -- Tokyo Sky Blue
-        iris = "#c792ea",    -- Night Owl Purple
-        leaf = "#c3e88d",    -- Tokyo Leaf Green
-        love = "#ff5189",    -- Neon Pink
-        gold = "#ecc48d",    -- Night Owl Gold
+        rose = "#ff7eb6",    -- Rosé Pink (Keywords)
+        pine = "#7fdbca",    -- Night Owl Seafoam (Constants)
+        foam = "#7dcfff",    -- Tokyo Sky (Variables)
+        iris = "#c792ea",    -- Night Owl Purple (Functions)
+        leaf = "#c3e88d",    -- Tokyo Green (Strings)
+        love = "#ff5189",    -- Neon Pink (Errors)
+        gold = "#ecc48d",    -- Night Owl Gold (Types)
       },
     },
 
-    -- UI Group Mapping
     groups = {
       border = "overlay",
       link = "iris",
@@ -75,12 +70,16 @@ return {
       git_untracked = "subtle",
     },
 
-    -- Syntax & Tree-sitter Refinements
     highlight_groups = {
+      -- 1. THE COMMENT FIX (Recedes into background)
+      ["@comment"] = { fg = "#637777", italic = true },
+      ["Comment"] = { fg = "#637777", italic = true },
+      ["@lsp.type.comment"] = { fg = "#637777" },
+
+      -- 2. SYNTAX REFINEMENTS
       Visual = { bg = "#2d4f67", inherit = false },
       ["@keyword.modifier"] = { fg = "rose", italic = true },
       ["@function"] = { fg = "iris" },
-      ["@function.builtin"] = { fg = "iris", italic = true },
       ["@type"] = { fg = "gold" },
       ["@type.definition"] = { fg = "gold", bold = true },
       ["@string"] = { fg = "leaf" },
@@ -88,10 +87,15 @@ return {
       ["@property"] = { fg = "foam" },
       ["@constant"] = { fg = "pine" },
       ["@boolean"] = { fg = "pine" },
+
+      -- 3. UI ACCENTS
       CursorLine = { bg = "#022a44" },
-      StatusLine = { fg = "subtle", bg = "overlay" },
-      TelescopeNormal = { bg = "surface" },
-      TelescopeBorder = { fg = "overlay", bg = "surface" },
+      LineNr = { fg = "#3b4261" },
+      CursorLineNr = { fg = "subtle", bold = true },
+
+      -- Better Floating Windows
+      NormalFloat = { bg = "surface" },
+      FloatBorder = { fg = "overlay", bg = "surface" },
     },
   },
   config = function(_, opts)
