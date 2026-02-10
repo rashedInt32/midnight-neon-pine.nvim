@@ -27,24 +27,23 @@ return {
     styles = {
       bold = true,
       italic = true,
-      transparency = false, -- Locked for Night Owl brand consistency
+      transparency = false, -- Force Night Owl Background
     },
 
-    -- Full Palette Override for UI Consistency
     palette = {
       main = {
-        base = "#011627",    -- Night Owl Background
+        base = "#011627", -- Night Owl Background
         surface = "#011f35", -- Sidebar/Panel Background
         overlay = "#0b2942", -- Floating Windows
-        muted = "#637777",   -- Night Owl Slate Comments
-        subtle = "#82aaff",  -- Night Owl Punctuation
-        rose = "#ff7eb6",    -- Rosé Pink (Keywords)
-        pine = "#7fdbca",    -- Night Owl Seafoam (Constants)
-        foam = "#7dcfff",    -- Tokyo Sky (Variables)
-        iris = "#c792ea",    -- Night Owl Purple (Functions)
-        leaf = "#c3e88d",    -- Tokyo Green (Strings)
-        love = "#ff5189",    -- Neon Pink (Errors)
-        gold = "#ecc48d",    -- Night Owl Gold (Types)
+        muted = "#637777", -- Night Owl Slate Comments
+        subtle = "#82aaff", -- Night Owl Punctuation
+        rose = "#ff7eb6", -- Rosé Pink (Keywords)
+        pine = "#7fdbca", -- Night Owl Seafoam (Constants)
+        foam = "#7dcfff", -- Tokyo Sky (Variables)
+        iris = "#c792ea", -- Night Owl Purple (Functions)
+        leaf = "#c3e88d", -- Tokyo Green (Strings)
+        love = "#ff5189", -- Neon Pink (Errors)
+        gold = "#ecc48d", -- Night Owl Gold (Types)
       },
     },
 
@@ -61,13 +60,6 @@ return {
       git_add = "leaf",
       git_change = "foam",
       git_delete = "love",
-      git_dirty = "rose",
-      git_ignore = "muted",
-      git_merge = "iris",
-      git_rename = "pine",
-      git_stage = "iris",
-      git_text = "rose",
-      git_untracked = "subtle",
     },
 
     highlight_groups = {
@@ -103,3 +95,4 @@ return {
     vim.cmd("colorscheme rose-pine")
   end,
 }
+
