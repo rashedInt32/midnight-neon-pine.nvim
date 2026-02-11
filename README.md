@@ -101,16 +101,16 @@ return {
 ## 📸 Screenshots
 
 ### Go
-![Go Example](screenshots/go.png)
+<img src="./screenshots/go.png" alt="Go Example" width="100%">
 
 ### Python
-![Python Example](screenshots/py.png)
+<img src="./screenshots/py.png" alt="Python Example" width="100%">
 
 ### Rust
-![Rust Example](screenshots/rs.png)
+<img src="./screenshots/rs.png" alt="Rust Example" width="100%">
 
 ### TypeScript
-![TypeScript Example](screenshots/ts.png)
+<img src="./screenshots/ts.png" alt="TypeScript Example" width="100%">
 
 ### React (TSX)
-![React TSX Example](screenshots/tsx.png)
+<img src="./screenshots/tsx.png" alt="React TSX Example" width="100%">
