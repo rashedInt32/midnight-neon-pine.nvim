@@ -1,0 +1,24 @@
+# Example files for theme showcasing
+# These files are used for generating screenshots only
+examples/
+example.lua
+example.py
+example.rs
+example.go
+example.ts
+example.tsx
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*

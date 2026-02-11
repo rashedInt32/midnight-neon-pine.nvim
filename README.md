@@ -92,8 +92,25 @@ return {
       -- REMOVED: NormalFloat and FloatBorder overrides to return to defaults
     },
   },
-  config = function(_, opts)
+    config = function(_, opts)
     require("rose-pine").setup(opts)
     vim.cmd("colorscheme rose-pine")
   end,
 }
+
+## 📸 Screenshots
+
+### Go
+![Go Example](screenshots/go.png)
+
+### Python
+![Python Example](screenshots/py.png)
+
+### Rust
+![Rust Example](screenshots/rs.png)
+
+### TypeScript
+![TypeScript Example](screenshots/ts.png)
+
+### React (TSX)
+![React TSX Example](screenshots/tsx.png)
