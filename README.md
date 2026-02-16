@@ -35,7 +35,7 @@ return {
         base = "#011627", -- Night Owl Background
         surface = "#011f35",
         overlay = "#0b2942",
-        muted = "#637777", -- Night Owl Slate Comments
+        muted = "#6a8080", -- Night Owl Slate Comments
         subtle = "#82aaff",
         rose = "#ff7eb6",
         pine = "#7fdbca",
@@ -43,11 +43,12 @@ return {
         iris = "#c792ea",
         leaf = "#c3e88d",
         love = "#ff5189",
-        gold = "#ecc48d",
+        -- TOKYONIGHT MATCH: The classic "e0af68" yellow.
+        -- It's buttery, balanced, and premium.
+        gold = "#0db9d7",
       },
     },
 
-    -- We removed 'border = "overlay"' from here to let Rose Pine decide
     groups = {
       link = "iris",
       panel = "surface",
@@ -64,35 +65,53 @@ return {
 
     highlight_groups = {
       -- 1. THE COMMENT FIX
-      ["@comment"] = { fg = "#637777", italic = true },
-      ["Comment"] = { fg = "#637777", italic = true },
-      ["@lsp.type.comment"] = { fg = "#637777" },
+      ["@comment"] = { fg = "#6a8080", italic = true },
+      ["Comment"] = { fg = "#6a8080", italic = true },
+      ["@lsp.type.comment"] = { fg = "#6a8080" },
 
-      -- 2. SYNTAX REFINEMENTS
-      Visual = { bg = "#1d3b53", inherit = false },
+      -- 2. KEYWORD DIFFERENTIATION (The "Class vs Export" fix)
+      ["@keyword.export"] = { fg = "iris", italic = true },
+      ["@keyword.import"] = { fg = "iris", italic = true },
+      ["@keyword.storage"] = { fg = "rose" },
       ["@keyword.modifier"] = { fg = "rose", italic = true },
-      ["@function"] = { fg = "iris" },
-      ["@type"] = { fg = "gold" },
-      ["@type.definition"] = { fg = "gold", bold = true },
-      ["@string"] = { fg = "leaf" },
+      ["@keyword.conditional"] = { fg = "rose" },
+
+      -- 3. PROPERTY STABILITY (The "Foam" fix)
       ["@variable.member"] = { fg = "foam" },
       ["@property"] = { fg = "foam" },
+      ["@field"] = { fg = "foam" },
+      ["@variable.parameter"] = { fg = "iris", italic = true },
+
+      -- 4. TYPE DEFINITIONS (Tokyonight Yellow)
+      ["@type"] = { fg = "gold", bold = true },
+      ["@type.builtin"] = { fg = "gold", bold = true },
+      ["@type.definition"] = { fg = "gold", bold = true },
       ["@constant"] = { fg = "pine" },
       ["@boolean"] = { fg = "pine" },
+      ["@string"] = { fg = "leaf" },
+      ["@function"] = { fg = "iris" },
 
-      -- 3. UI ACCENTS
+      -- 5. THE STABILITY ENGINE (LSP Overrides)
+      ["@lsp.type.property"] = { fg = "foam" },
+      ["@lsp.type.variableMember"] = { fg = "foam" },
+      ["@lsp.type.function"] = { link = "@function" },
+      ["@lsp.type.method"] = { link = "@function" },
+      ["@lsp.type.type"] = { fg = "gold", bold = true },
+      ["@lsp.type.class"] = { fg = "gold", bold = true },
+      ["@lsp.type.interface"] = { fg = "gold", bold = true },
+      ["@lsp.type.parameter"] = { link = "@variable.parameter" },
+
+      -- 6. UI ACCENTS
+      Visual = { bg = "#1d3b53", inherit = false },
       CursorLine = { bg = "#021320" },
       LineNr = { fg = "#3b4261" },
       CursorLineNr = { fg = "subtle", bold = true },
-
-      -- 4. BORDER FIX (VERTICAL SPLITS)
-      -- Using Rose Pine's internal 'muted' or 'highlight_med' for splits
       WinSeparator = { fg = "#3b4261", bg = "NONE" },
-
-      -- REMOVED: NormalFloat and FloatBorder overrides to return to defaults
+      CopilotSuggestion = { fg = "#5a6a8a" },
+      BlinkCmpGhostText = { fg = "#5a6a8a" },
     },
   },
-    config = function(_, opts)
+  config = function(_, opts)
     require("rose-pine").setup(opts)
     vim.cmd("colorscheme rose-pine")
   end,
