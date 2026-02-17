@@ -36,84 +36,90 @@ return {
         surface = "#011f35",
         overlay = "#0b2942",
         muted = "#6a8080", -- Night Owl Slate Comments
-        subtle = "#82aaff",
-        rose = "#ff7eb6",
-        pine = "#7fdbca",
-        foam = "#7dcfff",
-        iris = "#c792ea",
-        leaf = "#c3e88d",
-        love = "#ff5189",
-        -- TOKYONIGHT MATCH: The classic "e0af68" yellow.
-        -- It's buttery, balanced, and premium.
-        gold = "#0db9d7",
+        subtle = "#637777", -- Muted Steel for punctuation
+        rose = "#ff7eb6", -- Metadata/Async
+        pine = "#7fdbca", -- Constants/Booleans
+        foam = "#7dcfff", -- Functions
+        iris = "#c792ea", -- Classes/Booleans
+        love = "#ff5189", -- Keywords/Flow
+        gold = "#e0af68", -- Types (TokyoNight Gold)
+
+        -- NEW PREMIUM VARIABLES
+        mint = "#f2ceb6", -- Parameters (Italicized)
+        olive = "#addb67", -- Strings & SQL
       },
     },
 
-    groups = {
-      link = "iris",
-      panel = "surface",
-      error = "love",
-      hint = "iris",
-      info = "foam",
-      note = "pine",
-      todo = "rose",
-      warn = "gold",
-      git_add = "leaf",
-      git_change = "foam",
-      git_delete = "love",
-    },
-
     highlight_groups = {
-      -- 1. THE COMMENT FIX
-      ["@comment"] = { fg = "#6a8080", italic = true },
-      ["Comment"] = { fg = "#6a8080", italic = true },
-      ["@lsp.type.comment"] = { fg = "#6a8080" },
+      -- 1. THE "CALM" ENGINE
+      ["@punctuation.bracket"] = { fg = "subtle" },
+      ["@punctuation.delimiter"] = { fg = "subtle" },
+      ["@operator"] = { fg = "subtle" },
+      ["@comment"] = { fg = "muted", italic = true },
+      ["Comment"] = { fg = "muted", italic = true },
 
-      -- 2. KEYWORD DIFFERENTIATION (The "Class vs Export" fix)
-      ["@keyword.export"] = { fg = "iris", italic = true },
-      ["@keyword.import"] = { fg = "iris", italic = true },
-      ["@keyword.storage"] = { fg = "rose" },
-      ["@keyword.modifier"] = { fg = "rose", italic = true },
-      ["@keyword.conditional"] = { fg = "rose" },
+      -- 2. LOGIC FLOW (The "Love" Action)
+      ["@keyword.conditional"] = { fg = "love" },
+      ["@keyword.return"] = { fg = "love", italic = true, bold = true },
+      ["@keyword.repeat"] = { fg = "love" },
+      ["@keyword.exception"] = { fg = "love" },
+      ["@keyword.function"] = { fg = "love", italic = true }, -- 'function' vs 'const'
+      ["@punctuation.special"] = { fg = "love" }, -- The '*' in function*
 
-      -- 3. PROPERTY STABILITY (The "Foam" fix)
-      ["@variable.member"] = { fg = "foam" },
-      ["@property"] = { fg = "foam" },
-      ["@field"] = { fg = "foam" },
-      ["@variable.parameter"] = { fg = "iris", italic = true },
+      -- 3. STRUCTURE & METADATA
+      ["@keyword.export"] = { fg = "rose", italic = true },
+      ["@keyword.import"] = { fg = "rose", italic = true },
+      ["@keyword.storage"] = { fg = "iris" }, -- 'const', 'let', 'static'
+      ["@keyword.modifier"] = { fg = "rose", italic = true }, -- 'async', 'readonly'
 
-      -- 4. TYPE DEFINITIONS (Tokyonight Yellow)
+      -- 4. THE BLUEPRINT (Gold Hierarchy)
       ["@type"] = { fg = "gold", bold = true },
-      ["@type.builtin"] = { fg = "gold", bold = true },
-      ["@type.definition"] = { fg = "gold", bold = true },
+      ["@type.builtin"] = { fg = "iris" },
+      ["@type.interface"] = { fg = "gold", bold = true },
+      ["@variable.parameter"] = { fg = "mint", italic = true },
+
+      -- 5. ACTION (Foam for Functions)
+      ["@function"] = { fg = "foam" },
+      ["@function.method"] = { fg = "foam" },
+      ["@function.call"] = { fg = "foam" },
+      ["@property"] = { fg = "iris" },
+      ["@variable.member"] = { fg = "iris" },
+
+      -- 6. DATA (Olive for Strings)
       ["@constant"] = { fg = "pine" },
       ["@boolean"] = { fg = "pine" },
-      ["@string"] = { fg = "leaf" },
-      ["@function"] = { fg = "iris" },
+      ["@string"] = { fg = "olive" },
 
-      -- 5. THE STABILITY ENGINE (LSP Overrides)
-      ["@lsp.type.property"] = { fg = "foam" },
-      ["@lsp.type.variableMember"] = { fg = "foam" },
-      ["@lsp.type.function"] = { link = "@function" },
-      ["@lsp.type.method"] = { link = "@function" },
-      ["@lsp.type.type"] = { fg = "gold", bold = true },
-      ["@lsp.type.class"] = { fg = "gold", bold = true },
-      ["@lsp.type.interface"] = { fg = "gold", bold = true },
-      ["@lsp.type.parameter"] = { link = "@variable.parameter" },
-
-      -- 6. UI ACCENTS
-      Visual = { bg = "#1d3b53", inherit = false },
-      CursorLine = { bg = "#021320" },
+      -- 7. UI ACCENTS
+      Visual = { bg = "#1b2e3f", inherit = false },
+      CursorLine = { bg = "#081d2f" },
       LineNr = { fg = "#3b4261" },
-      CursorLineNr = { fg = "subtle", bold = true },
-      WinSeparator = { fg = "#3b4261", bg = "NONE" },
-      CopilotSuggestion = { fg = "#5a6a8a" },
-      BlinkCmpGhostText = { fg = "#5a6a8a" },
+      CursorLineNr = { fg = "foam", bold = true },
+      WinSeparator = { fg = "#0b2942", bg = "NONE" },
+
+      -- LSP Overrides for separation
+      ["@lsp.type.type"] = { link = "@type" },
+      ["@lsp.type.interface"] = { link = "@type.interface" },
+      ["@lsp.type.function"] = { link = "@function" },
+      ["@lsp.type.method"] = { link = "@function.method" },
+      ["@lsp.type.parameter"] = { fg = "mint", italic = true },
+      ["@lsp.type.variable"] = { fg = "subtle" }, -- Mutes regular variables
     },
   },
   config = function(_, opts)
     require("rose-pine").setup(opts)
     vim.cmd("colorscheme rose-pine")
+
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+      pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.lua" },
+      callback = function()
+        vim.fn.matchadd("CoroutineKeyword", "\\<yield\\>", 100)
+        vim.fn.matchadd("CoroutineKeyword", "\\<await\\>", 100)
+        vim.fn.matchadd("CoroutineKeyword", "\\<async\\>", 100)
+      end,
+    })
+
+    vim.api.nvim_set_hl(0, "CoroutineKeyword", { fg = "#ff7eb6", italic = true })
   end,
 }
 ```
